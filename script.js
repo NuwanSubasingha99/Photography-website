@@ -2,11 +2,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const slider = document.getElementById('imageSlider');
     const slides = document.querySelectorAll('.slide');
     const indicators = document.querySelectorAll('.indicator');
+    const categoryElement = document.getElementById('sliderCategory');
+    const descriptionElement = document.getElementById('sliderDescription');
     let currentIndex = 0;
     let startX, moveX;
     let isMoving = false;
 
-    // Set initial position
+    // Set initial position and content
     updateSlider();
 
     // Set up indicators
@@ -51,16 +53,16 @@ document.addEventListener('DOMContentLoaded', function() {
         return offsets;
     }
 
-    // Update slider position and active states
+    // Update slider position, content, and trigger animations
     function updateSlider() {
         const offsets = getSlideOffsets();
         const offset = -offsets[currentIndex];
 
-        // Update slider position with smooth transition
+        // Update slider position
         slider.style.transition = 'transform 0.5s ease-in-out';
         slider.style.transform = `translateX(${offset}px)`;
 
-        // Update active classes
+        // Update active classes for slides
         slides.forEach((slide, index) => {
             slide.classList.toggle('active', index === currentIndex);
         });
@@ -69,6 +71,31 @@ document.addEventListener('DOMContentLoaded', function() {
         indicators.forEach((indicator, index) => {
             indicator.classList.toggle('active', index === currentIndex);
         });
+
+        // Update category and description with animation
+        const activeSlide = slides[currentIndex];
+        const newCategory = activeSlide.dataset.category;
+        const newDescription = activeSlide.dataset.description;
+
+        // Trigger fade-out animation
+        categoryElement.classList.add('fade-out');
+        descriptionElement.classList.add('fade-out');
+
+        // Wait for animation to complete, then update content and fade in
+        setTimeout(() => {
+            categoryElement.textContent = newCategory;
+            descriptionElement.textContent = newDescription;
+            categoryElement.classList.remove('fade-out');
+            descriptionElement.classList.remove('fade-out');
+            categoryElement.classList.add('fade-in');
+            descriptionElement.classList.add('fade-in');
+
+            // Remove fade-in class after animation
+            setTimeout(() => {
+                categoryElement.classList.remove('fade-in');
+                descriptionElement.classList.remove('fade-in');
+            }, 500); // Match animation duration
+        }, 500); // Match fade-out duration
     }
 
     // Touch events for mobile swipe
@@ -99,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const diff = moveX - startX;
 
-        // Determine if we should change slides based on swipe distance
+        // Determine if we should change slides
         if (diff < -50) {
             nextSlide();
         } else if (diff > 50) {
