@@ -97,10 +97,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Set button color and hover state
         if (exploreButton) {
             exploreButton.style.backgroundColor = newButtonColor;
-            exploreButton.style.transition = 'background-color 0.5s ease'; // Smooth color transition
-            // Dynamically set hover state
-            const hoverColor = darkenColor(newButtonColor, 20); // Darken by 20%
-            // Remove existing hover styles and add new one
+            exploreButton.style.transition = 'background-color 0.5s ease';
+            const hoverColor = darkenColor(newButtonColor, 20);
             exploreButton.onmouseover = () => {
                 exploreButton.style.backgroundColor = hoverColor;
             };
@@ -127,8 +125,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(() => {
                     categoryElement.classList.remove('fade-in');
                     descriptionElement.classList.remove('fade-in');
-                }, 500); // Match animation duration
-            }, 500); // Match fade-out duration
+                }, 500);
+            }, 500);
         }
     }
 
@@ -146,7 +144,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const offsets = getSlideOffsets();
         const currentOffset = -offsets[currentIndex];
 
-        // Apply the drag offset
         slider.style.transform = `translateX(${currentOffset + diff}px)`;
     }, { passive: true });
 
@@ -154,12 +151,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!isMoving) return;
         isMoving = false;
 
-        // Restore transition
         slider.style.transition = 'transform 0.5s ease-in-out';
 
         const diff = moveX - startX;
 
-        // Determine if we should change slides
         if (diff < -50) {
             nextSlide();
         } else if (diff > 50) {
@@ -180,4 +175,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Recalculate offsets on window resize
     window.addEventListener('resize', updateSlider);
+
+    // Animation for About Section on scroll
+    const aboutText = document.querySelector('.about-text');
+    const aboutImage = document.querySelector('.about-image');
+
+    function checkScroll() {
+        const rect = aboutText.getBoundingClientRect();
+        if (rect.top <= window.innerHeight * 0.8) {
+            aboutText.classList.add('visible');
+            aboutImage.classList.add('visible');
+        }
+    }
+
+    window.addEventListener('scroll', checkScroll);
+    checkScroll();
+
+    // Ensure navbar collapse background is removed when resized to larger screens
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    window.addEventListener('resize', function() {
+        if (window.innerWidth >= 992 && navbarCollapse.classList.contains('show')) {
+            navbarCollapse.classList.remove('show');
+        }
+    });
+
+    // Sync navbar collapse animation
+    navbarCollapse.addEventListener('show.bs.collapse', function() {
+        this.style.opacity = '0';
+        this.style.transform = 'translateY(-10px)';
+        setTimeout(() => {
+            this.style.opacity = '1';
+            this.style.transform = 'translateY(0)';
+        }, 300);
+    });
+
+    navbarCollapse.addEventListener('hide.bs.collapse', function() {
+        this.style.opacity = '0';
+        this.style.transform = 'translateY(-10px)';
+    });
 });
