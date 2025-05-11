@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             this.style.opacity = '1';
             this.style.transform = 'translateY(0)';
-        }, 300);
+        }, 250);
     });
 
     navbarCollapse.addEventListener('hide.bs.collapse', function() {
