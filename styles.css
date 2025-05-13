@@ -1,390 +1,215 @@
 /* Global Styles */
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 /* Navigation */
 .navbar {
-  background-color: transparent;
-  padding: 1.5rem 0;
-  position: absolute;
-  width: 100%;
-  z-index: 100;
+    background-color: transparent;
+    padding: 1.5rem 0;
+    position: absolute;
+    width: 100%;
+    z-index: 100;
 }
 
 .navbar-brand {
-  font-weight: 700;
-  font-size: 1.5rem;
+    font-weight: 700;
+    font-size: 1.5rem;
 }
 
 .nav-link {
-  font-weight: 500;
-  margin-left: 1.5rem;
-}
-
-/* Navbar Collapse Background for Small Screens */
-.navbar-collapse {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  opacity: 1;
-  transform: translateY(-10px);
-}
-
-.navbar-collapse.show {
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  margin: 0 10px;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.navbar-nav {
-  transition: opacity 0.3s ease;
-}
-
-.navbar-collapse.show .navbar-nav {
-  opacity: 1;
+    font-weight: 500;
+    margin-left: 1.5rem;
 }
 
 /* Hero Section */
 .hero-section {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  transition: background-image 0.5s ease-in-out;
+    min-height: 100vh;
+    /* Full viewport height */
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    /* Ensure background image covers the section */
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 0.5s ease-in-out;
+    /* Smooth background transition */
 }
 
 .hero-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.8) 0%,
-    rgba(0, 0, 0, 0.6) 30%,
-    rgba(0, 0, 0, 0.3) 60%,
-    transparent 100%
-  );
-  z-index: 1;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* Dark overlay for visual appeal */
+    z-index: 1;
 }
 
 .hero-section .container {
-  position: relative;
-  z-index: 2;
-  padding: 5rem 0;
+    position: relative;
+    z-index: 2;
+    padding: 5rem 0;
 }
 
 .hero-section h1 {
-  font-family: "Times New Roman", Times, serif;
-  font-weight: 300;
-  letter-spacing: -1px;
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 300;
+    letter-spacing: -1px;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .hero-section h1.fade-out {
-  opacity: 0;
-  transform: translateY(20px);
+    opacity: 0;
+    transform: translateY(20px);
+    /* Move down when fading out */
 }
 
 .hero-section h1.fade-in {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
+    /* Return to original position when fading in */
 }
 
 .hero-section p {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .hero-section p.fade-out {
-  opacity: 0;
-  transform: translateY(20px);
+    opacity: 0;
+    transform: translateY(20px);
+    /* Move down when fading out */
 }
 
 .hero-section p.fade-in {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
+    /* Return to original position when fading in */
 }
 
 .btn-danger {
-  background-color: #d32f2f;
-  border: none;
-  padding: 0.75rem 2rem;
-  font-weight: 600;
+    background-color: #d32f2f;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
 }
 
 .btn-danger:hover {
-  background-color: #b71c1c;
+    background-color: #b71c1c;
 }
 
 /* Horizontal Image Slider */
 .horizontal-slider-container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  padding: 20px 0;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0;
+
 }
 
 .horizontal-slider {
-  display: flex;
-  position: relative;
-  width: 100%;
-  height: 350px;
-  transition: transform 0.5s ease-in-out;
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 300px; /* Adjusted for slider */
+    transition: transform 0.5s ease-in-out;
+
 }
 
 .slide {
-  min-width: 70%;
-  height: 100%;
-  position: relative;
-  margin-right: 15px;
-  border-radius: 20px;
-  overflow: hidden;
-  opacity: 0.5;
-  transform: scale(0.9);
-  transition: all 0.5s ease;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    min-width: 70%;
+    height: 100%;
+    position: relative;
+    margin-right: 15px;
+    border-radius: 20px;
+    overflow: hidden;
+    opacity: 0.5;
+    transform: scale(0.9);
+    transition: all 0.5s ease;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .slide.active {
-  opacity: 1;
-  transform: scale(1);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  margin-left: 15px;
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border: 3px solid white;
+    margin-left: 15px;
+
 }
 
 .slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  background-color: #000;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Maintain slider image styling */
+    object-position: center;
+    background-color: #000;
 }
 
 /* Slider Indicators */
 .slider-indicators {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 .indicator {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.5);
-  margin: 0 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .indicator.active {
-  background-color: white;
-}
-
-/* About Section */
-.about-section {
-  background-color: #000;
-  padding: 5rem 0;
-}
-
-.about-text {
-  opacity: 0;
-  transform: translateX(-50px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.about-text.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.about-image {
-  opacity: 0;
-  transform: translateX(50px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.about-image.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.about-image img {
-  max-width: 100%;
-  height: auto;
+    background-color: white;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 991.98px) {
-  .hero-section {
-    padding: 6rem 0 3rem;
-    text-align: center;
-  }
+    .hero-section {
+        padding: 6rem 0 3rem;
+        text-align: center;
+    }
 
-  .horizontal-slider-container {
-    margin-top: 3rem;
-  }
+    .horizontal-slider-container {
+        margin-top: 3rem;
+    }
 
-  .slide {
-    min-width: 90%;
-  }
+    .slide {
+        min-width: 90%;
+    }
 
-  .horizontal-slider {
-    height: 302px;
-  }
-
-  .about-text,
-  .about-image {
-    text-align: center;
-    transform: translateY(50px);
-  }
-
-  .about-text.visible,
-  .about-image.visible {
-    transform: translateY(0);
-  }
-
-  .navbar-collapse {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: calc(100% - 20px);
-    z-index: 99;
-  }
-
-  .navbar-nav {
-    padding: 1rem;
-  }
+    .horizontal-slider {
+        height: 302px;
+        /* Maintain for smaller screens */
+    }
 }
 
-/* Update the media query for mobile devices */
 @media (max-width: 767.98px) {
-  .hero-section h1 {
-    font-size: 3rem;
-  }
+    .hero-section h1 {
+        font-size: 3rem;
+    }
 
-  .horizontal-slider {
-    height: auto;
-    max-height: 225px;
-  }
-
-  .slide {
-    height: auto;
-    max-height: 225px;
-  }
-
-  .slide img {
-    height: 100%;
-    max-height: 225px;
-    width: 100%;
-    object-fit: contain; /* Change from cover to contain */
-  }
-}
-
-/* Add specific iPhone fixes */
-@media screen and (max-width: 428px) {
-  .horizontal-slider {
-    height: auto;
-    max-height: 180px;
-  }
-
-  .slide {
-    height: auto;
-    max-height: 180px;
-  }
-
-  .slide img {
-    height: 100%;
-    max-height: 180px;
-    width: 100%;
-    object-fit: contain; /* Use contain instead of cover */
-    object-position: center;
-  }
-
-  /* Fix for hero section background */
-  .hero-section {
-    background-size: contain;
-    background-position: center top;
-  }
-}
-
-/* Add footer styles */
-.footer {
-  background-color: #000;
-  color: #fff;
-  padding: 3rem 0;
-}
-
-.footer h5 {
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-}
-
-.footer-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-links li {
-  margin-bottom: 0.75rem;
-}
-
-.footer-links a {
-  color: rgba(255, 255, 255, 0.7);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: #fff;
-}
-
-.social-icons {
-  display: flex;
-  gap: 1rem;
-}
-
-.social-icons a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  transition: all 0.3s ease;
-}
-
-.social-icons a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-3px);
-}
-
-.copyright {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 1.5rem;
-  margin-top: 2rem;
+    .horizontal-slider {
+        height: 225px;
+        /* Maintain for mobile */
+    }
 }
