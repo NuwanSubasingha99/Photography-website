@@ -89,9 +89,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const newBackgroundImage = activeSlide.querySelector("img").src
     const newButtonColor = textContent[currentIndex].buttonColor
 
-    // Set hero section background
+    // Set hero section background with mobile check
     if (heroSection) {
-      heroSection.style.backgroundImage = `url(${newBackgroundImage})`
+      // Check if mobile device
+      if (window.innerWidth <= 428) {
+        // For mobile, don't set the background image to avoid zoom issues
+        heroSection.style.backgroundImage = "none"
+        heroSection.style.backgroundColor = "#000"
+      } else {
+        heroSection.style.backgroundImage = `url(${newBackgroundImage})`
+      }
     }
 
     // Set button color and hover state
