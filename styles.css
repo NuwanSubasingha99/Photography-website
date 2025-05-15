@@ -140,6 +140,7 @@ body {
   width: 100%;
   overflow: hidden;
   padding: 20px 0;
+  -webkit-overflow-scrolling: touch; /* Add smooth scrolling for iOS */
 }
 
 .horizontal-slider {
@@ -148,6 +149,7 @@ body {
   width: 100%;
   height: 350px;
   transition: transform 0.5s ease-in-out;
+  will-change: transform; /* Optimize performance */
 }
 
 .slide {
@@ -164,6 +166,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  -webkit-transform: translateZ(0); /* Add hardware acceleration */
 }
 
 .slide.active {
@@ -179,6 +182,7 @@ body {
   object-fit: cover;
   object-position: center;
   background-color: #000;
+  -webkit-transform: translateZ(0); /* Add hardware acceleration */
 }
 
 /* Slider Indicators */
@@ -248,10 +252,11 @@ body {
 
   .slide {
     min-width: 90%;
+    height: 300px; /* Match container height */
   }
 
   .horizontal-slider {
-    height: 302px;
+    height: 300px; /* Set fixed height */
   }
 
   .about-text,
@@ -284,33 +289,60 @@ body {
   }
 
   .horizontal-slider {
-    height: auto;
-    max-height: 225px;
+    height: 250px; /* Adjusted height for smaller screens */
   }
 
   .slide {
-    height: auto;
-    max-height: 225px;
+    height: 250px;
+    min-width: 85%; /* Slightly smaller width */
   }
 
   .slide img {
-    height: 100%;
-    max-height: 225px;
     width: 100%;
+    height: 100%;
     object-fit: cover;
+    transform: none; /* Remove any transforms */
   }
 }
 
-/* Add specific iPhone fixes */
+/* iPhone-specific fixes */
 @media screen and (max-width: 428px) {
   .horizontal-slider {
-    height: auto;
-    max-height: 200px;
+    height: 200px;
   }
 
   .slide {
-    height: auto;
-    max-height: 200px;
+    height: 200px;
+    min-width: 85%;
+    transform-origin: center center;
+  }
+
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: none;
+    -webkit-backface-visibility: hidden; /* Prevent scaling issues */
+    -webkit-perspective: 1000; /* Prevent scaling issues */
+  }
+
+  .slide.active {
+    transform: scale(1.02); /* Reduce scale effect on mobile */
+  }
+}
+
+/* Add specific fixes for iPhone notch devices */
+@media screen and (max-width: 428px) and (min-device-width: 375px) and (min-device-height: 812px) {
+  .horizontal-slider-container {
+    padding: 15px 0;
+  }
+  
+  .horizontal-slider {
+    height: 180px; /* Slightly smaller height for notched devices */
+  }
+
+  .slide {
+    height: 180px;
   }
 }
 
