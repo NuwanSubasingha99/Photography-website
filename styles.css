@@ -134,76 +134,77 @@ body {
   background-color: #b71c1c;
 }
 
-/* Horizontal Image Slider */
-.horizontal-slider-container {
+/* Owl Carousel Custom Styles */
+.owl-carousel {
   position: relative;
-  width: 100%;
-  overflow: hidden;
   padding: 20px 0;
-  -webkit-overflow-scrolling: touch; /* Add smooth scrolling for iOS */
 }
 
-.horizontal-slider {
-  display: flex;
+.owl-carousel .item {
   position: relative;
-  width: 100%;
-  height: 350px;
-  transition: transform 0.5s ease-in-out;
-  will-change: transform; /* Optimize performance */
-}
-
-.slide {
-  min-width: 70%;
-  height: 100%;
-  position: relative;
-  margin-right: 15px;
   border-radius: 20px;
   overflow: hidden;
-  opacity: 0.5;
   transform: scale(0.9);
   transition: all 0.5s ease;
-  flex-shrink: 0;
+}
+
+.owl-carousel .owl-item.active.center .item {
+  transform: scale(1);
+}
+
+.owl-carousel .item img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.owl-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
   display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.owl-prev, .owl-next {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 50% !important;
+  display: flex !important;
   align-items: center;
   justify-content: center;
-  -webkit-transform: translateZ(0); /* Add hardware acceleration */
+  color: white !important;
+  font-size: 20px !important;
+  transition: all 0.3s ease;
 }
 
-.slide.active {
-  opacity: 1;
-  transform: scale(1);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  margin-left: 15px;
+.owl-prev:hover, .owl-next:hover {
+  background: rgba(255, 255, 255, 0.4) !important;
 }
 
-.slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  background-color: #000;
-  -webkit-transform: translateZ(0); /* Add hardware acceleration */
-}
-
-/* Slider Indicators */
-.slider-indicators {
+.owl-dots {
+  position: relative;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  gap: 8px;
 }
 
-.indicator {
-  width: 12px;
-  height: 12px;
+.owl-dot span {
+  width: 12px !important;
+  height: 12px !important;
+  background: rgba(255, 255, 255, 0.5) !important;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.5);
-  margin: 0 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  display: block;
+  transition: all 0.3s ease;
 }
 
-.indicator.active {
-  background-color: white;
+.owl-dot.active span {
+  background: white !important;
 }
 
 /* About Section */
@@ -246,17 +247,8 @@ body {
     text-align: center;
   }
 
-  .horizontal-slider-container {
-    margin-top: 3rem;
-  }
-
-  .slide {
-    min-width: 90%;
-    height: 300px; /* Match container height */
-  }
-
-  .horizontal-slider {
-    height: 300px; /* Set fixed height */
+  .owl-carousel .item img {
+    height: 300px;
   }
 
   .about-text,
@@ -288,61 +280,94 @@ body {
     font-size: 3rem;
   }
 
-  .horizontal-slider {
-    height: 250px; /* Adjusted height for smaller screens */
-  }
-
-  .slide {
+  .owl-carousel .item img {
     height: 250px;
-    min-width: 85%; /* Slightly smaller width */
   }
 
-  .slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: none; /* Remove any transforms */
+  .about-text,
+  .about-image {
+    text-align: center;
+    transform: translateY(50px);
+  }
+
+  .about-text.visible,
+  .about-image.visible {
+    transform: translateY(0);
+  }
+
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: calc(100% - 20px);
+    z-index: 99;
+  }
+
+  .navbar-nav {
+    padding: 1rem;
   }
 }
 
-/* iPhone-specific fixes */
 @media screen and (max-width: 428px) {
-  .horizontal-slider {
+  .owl-carousel .item img {
     height: 200px;
   }
-
-  .slide {
-    height: 200px;
-    min-width: 85%;
-    transform-origin: center center;
+  
+  .owl-nav {
+    padding: 0 10px;
   }
 
-  .slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: none;
-    -webkit-backface-visibility: hidden; /* Prevent scaling issues */
-    -webkit-perspective: 1000; /* Prevent scaling issues */
+  .about-text,
+  .about-image {
+    text-align: center;
+    transform: translateY(50px);
   }
 
-  .slide.active {
-    transform: scale(1.02); /* Reduce scale effect on mobile */
+  .about-text.visible,
+  .about-image.visible {
+    transform: translateY(0);
+  }
+
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: calc(100% - 20px);
+    z-index: 99;
+  }
+
+  .navbar-nav {
+    padding: 1rem;
   }
 }
 
 /* Add specific fixes for iPhone notch devices */
 @media screen and (max-width: 428px) and (min-device-width: 375px) and (min-device-height: 812px) {
-  .horizontal-slider-container {
-    padding: 15px 0;
-  }
-  
-  .horizontal-slider {
-    height: 180px; /* Slightly smaller height for notched devices */
+  .owl-carousel .item img {
+    height: 180px;
   }
 
-  .slide {
-    height: 180px;
+  .about-text,
+  .about-image {
+    text-align: center;
+    transform: translateY(50px);
+  }
+
+  .about-text.visible,
+  .about-image.visible {
+    transform: translateY(0);
+  }
+
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: calc(100% - 20px);
+    z-index: 99;
+  }
+
+  .navbar-nav {
+    padding: 1rem;
   }
 }
 
